@@ -15,4 +15,18 @@ Here are some problems that you may encounter when you play a cheap electronic s
 
 Sure, all of these problems may disappear as you upgrade to a more expensive drum set, but you will have to spend around 1200€. But even then, it will still be a mid-tier electronic drumset.
 
+The best option, in my opinion, is to convert an acoustic set into an electronic one. If you already have an acoustic set or if you don't have one, as you can get one for 100€ or 200€. Now, there are two options for electronic conversion, buy the triggers and cymbals or go the DIY route, which is **much cheaper**. Although there is one expensive component that all the DIY guides asks for, the **Drum Module**.
 
+It is normally the most expensive component in every drumset. The job of this component is critical, read the signals from the triggers and make a sound accordingly. Drum modules can go for around 300€ to 700€, but instead of buying a module that produce a mediocre sound, you should buy or make a trigger interface, is the same a drum module but instead of producing the sounds by itself, it sends MIDI notes to your computer, which will always produce better sound than even the most expensive modules.
+
+Trigger Interfaces are much cheaper, the DDrum Trigger Interface will work perfectly for only 170€, but you can even make this component yourself.
+
+**DISCLAIMER**: From now on, the guide will center on build the interface, in the following months a guide on DIY trigger and cymbals will be available. But from now, there is plenty of information online.
+
+# How it works?
+
+There are many Arduino drum modules online, but a common problem in all of them is the latency, I find that an Arduino isn't fast enough to process the raw piezo signal from several channels, which is the approach that many people follow when making the interface. 
+
+![Raw Piezo Signal](Pics/raw_piezo_sginal.png)
+
+This desing is centered arround the AtMega 2560, as I want more than 6 channels for a full electronic set. But the list of mat
