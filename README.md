@@ -29,4 +29,17 @@ There are many Arduino drum modules online, but a common problem in all of them 
 
 ![Raw Piezo Signal](Pics/raw_piezo_sginal.png)
 
+As seen in the picture, the peak of a piezo may only occur in the span of 100us. So the microcontroller may not read the channel at just the peak, so it will send no MIDI value at all, or send a wrong value. That is why in my desing I decided to add a **peak detector circuit** per channel.
+
+![Peak Detector Circuit](Pics/peak_detector.png)
+
+This circuit maintains the highest voltage from the piezo, so the voltage of the peak will be available for the uC to be read. Once the peak value has been registered, the capacitor will be discharged through the transistor, reseting the peak detector.
+
+![](Pics/osc_flam.jpg)
+- **Yellow Signal**: Raw piezo signal.
+- **Blue Signal**: Peak detector output.
+- **Pink Signal**: Transistor gate.
+
+Once the uC detects a value on the channels higher than a given **threshold**, it wait a couple of milliseconds for the signal to reach the peak, this period is called **scan time**, after that, the value of the channel is read. But to stop retriggering, the uC won't clear the detector once a **dead time** has finished. All of these values are standarts from drum modules, and they can be set from channel to channel. 
+
 This desing is centered arround the AtMega 2560, as I want more than 6 channels for a full electronic set. But the list of mat
