@@ -32,12 +32,12 @@ Trigger Interfaces are much cheaper, the DDrum Trigger Interface will work perfe
 # Future Features
 - [x] Schematic. 
 - [x] Cross-Talk.
-- [] Support for custom dual and triple zone cymbals.
-- [] Support for rimshot on snare. 
-- [] Hihat Pedal using optical sensor.
-- [] Change values using LCD screen and keypad.
-- [] Save custom values in EEPROM.
-- [] PCB available for production.
+- [  ] Support for custom dual and triple zone cymbals.
+- [  ] Support for rimshot on snare. 
+- [  ] Hihat Pedal using optical sensor.
+- [  ] Change values using LCD screen and keypad.
+- [  ] Save custom values in EEPROM.
+- [  ] PCB available for production.
 
 
 # How it works?
