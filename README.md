@@ -42,4 +42,24 @@ This circuit maintains the highest voltage from the piezo, so the voltage of the
 
 Once the uC detects a value on the channels higher than a given **threshold**, it wait a couple of milliseconds for the signal to reach the peak, this period is called **scan time**, after that, the value of the channel is read. But to stop retriggering, the uC won't clear the detector once a **dead time** has finished. All of these values are standarts from drum modules, and they can be set from channel to channel. 
 
-This desing is centered arround the AtMega 2560, as I want more than 6 channels for a full electronic set. But the list of mat
+Using this method, we ensure that only the peak value of the piezo will be read, also no hits will be lost because the uC can read each channel at its own pace. In this example, the hit was a flam, and it registered both hits, although they were 30 milliseconds apart.
+
+# List of materials.
+
+This desing is centered arround the AtMega 2560, as I want more than 6 channels for a full electronic set. But an AtMega328p can also be used, it depends on the number of channels that you want to use.
+
+### Material per module.
+- AtMega 2560 or AtMega328p. Although I recommend an Arduino, as the AtMega16 will be used to send the MIDI events over USB.
+- ISP Programmer: USBTiny or another Arduino.
+- LM7660 positive to negative voltage converter. 
+
+### Materials per channel.
+
+- Female Jack (3.5mm or 6.5mm).
+- Male Jack (3.5mm or 6.5mm).
+- 2N2222 NPN BJT.
+- 10k and 330 resistors.
+- 1uF ceramic capacitor.
+- 1N4148 Diode.
+- TL082 Operational Amplifier.
+
