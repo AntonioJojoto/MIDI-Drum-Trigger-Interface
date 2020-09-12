@@ -4,7 +4,7 @@ Many people may not know this, but drums are expensive, and if you live in an ap
 
 However, there is another option, electronic drums. They are so silent that your roommates won't even complain (if you play at 3AM they might). But there is one **big** drawback to edrums, they are **too expensive**.
 
-A low-tier edrum can go around 400€, I currently own a Yamaha DTX450k and I got a deal for it at 440€, as it normally goes for 550€ and when I was staring to practice it was OK, but then I got the chance to practice for a year on a acoustic set, and when I had to return to my cheap set I started to 
+A low-tier edrum can go around 400€, I currently own a Yamaha DTX450k and I got a deal for it at 440€, as it normally goes for 550€ and when I was staring to practice it was OK, but then I got the chance to practice for a year on a acoustic set, and when I had to return to my cheap set I started to notice the drawback of cheap electronic drumsets. 
 
 Here are some problems that you may encounter when you play a cheap electronic set:
 - The sounds from the module are awful, specially the cymbals.
@@ -22,6 +22,23 @@ It is normally the most expensive component in every drumset. The job of this co
 Trigger Interfaces are much cheaper, the DDrum Trigger Interface will work perfectly for only 170€, but you can even make this component yourself.
 
 **DISCLAIMER**: From now on, the guide will center on build the interface, in the following months a guide on DIY trigger and cymbals will be available. But from now, there is plenty of information online.
+
+# Current Features
+- 16 single-zone channels.
+- Custom values for each channel (scan time,dead time,etc).
+- MIDI-over-USB Interface.
+- Less than 3 milliseconds latency.
+
+# Future Features
+- [x] Schematic. 
+- [x] Cross-Talk.
+- [] Support for custom dual and triple zone cymbals.
+- [] Support for rimshot on snare. 
+- [] Hihat Pedal using optical sensor.
+- [] Change values using LCD screen and keypad.
+- [] Save custom values in EEPROM.
+- [] PCB available for production.
+
 
 # How it works?
 
@@ -44,7 +61,9 @@ Once the uC detects a value on the channels higher than a given **threshold**, i
 
 Using this method, we ensure that only the peak value of the piezo will be read, also no hits will be lost because the uC can read each channel at its own pace. In this example, the hit was a flam, and it registered both hits, although they were 30 milliseconds apart.
 
+
 # List of materials.
+
 
 This desing is centered arround the AtMega 2560, as I want more than 6 channels for a full electronic set. But an AtMega328p can also be used, it depends on the number of channels that you want to use.
 
