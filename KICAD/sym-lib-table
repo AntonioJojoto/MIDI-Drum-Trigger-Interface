@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name Drumset-rescue)(type Legacy)(uri ${KIPRJMOD}/Drumset-rescue.lib)(options "")(descr ""))
+)
