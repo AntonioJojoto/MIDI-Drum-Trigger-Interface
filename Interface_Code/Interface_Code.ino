@@ -1,4 +1,5 @@
 #include <MIDI.h>
+#include <LiquidCrystal.h>
 
 MIDI_CREATE_DEFAULT_INSTANCE();
 
@@ -30,8 +31,13 @@ float dead_time[max_channels]={30,30,30,150,150,30};
 int clear_delay[max_channels]={1000,1000,1000,1000,1000,1000};
 byte curve[max_channels]={1,1,1,1,1,1};
 
+// For the LCD
+LiquidCrystal lcd(12,11,5,4,3,2);
+
 void setup()
 {
+	// Setup LCD
+	lcd.begin(16,2);
 	// Initialize MIDI
 	MIDI.begin(MIDI_CHANNEL_OMNI);
 	// Set digital Pins as output
