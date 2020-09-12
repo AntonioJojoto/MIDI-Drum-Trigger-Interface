@@ -13,7 +13,7 @@ void keypad_init(void){
 
 // Too many lines
 int keypad_read(void){
-
+	do{
 	int a=-1;
 	digitalWrite(C1,HIGH);
 	delay(100);
@@ -38,4 +38,6 @@ int keypad_read(void){
 	if(digitalRead(R3)){ a=9; }
 	if(digitalRead(R4)){ a=12; }
 	digitalWrite(C3,LOW);
+	}while(a!=-1)
+
 }
