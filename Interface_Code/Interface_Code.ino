@@ -16,9 +16,9 @@ int value[max_channels];
 int vel[max_channels];
 unsigned long t[max_channels];
 // Snare, kick, closed hihat
-const byte note[max_channels]={38,36,42,51,53,0};
+byte note[max_channels]={38,36,42,51,53,0};
 // Pin to clear the peak detector 
-const byte circuit[max_channels]={12,11,10,9,8,7};
+byte circuit[max_channels]={12,11,10,9,8,7};
 
 // Future releases will have this stored in the EEPROM
 
@@ -33,6 +33,11 @@ byte curve[max_channels]={1,1,1,1,1,1};
 
 // For the LCD
 LiquidCrystal lcd(12,11,5,4,3,2);
+int option;
+int option_2;
+int option_channel;
+int option_value[3];
+bool menu=false;
 
 void setup()
 {
@@ -48,13 +53,106 @@ void setup()
 		pinMode(circuit[a],OUTPUT);
 	}
 
-	lcd.print("Hola tt");
+	// This part corresponds to the LCD, maybe next time in function
+	lcd.print("Welcome to your");
+	lcd.setCursor(0,1);
+	lcd.print("drumset!!");
+	delay(2000);
+	lcd.clear();
+	
+	menu=true;
+
+	lcd.clear();
+	while(menu){
+	lcd.print("Aleki");
+	lcd.print(keypad_read());
+	delay(1000);
+	}
+	/*lcd.print("Select option?");
+	int option=keypad_read();
+	lcd.clear();
+	switch (option) {
+		case 1:
+			lcd.print("Change MIDI");		
+			lcd.setCursor(0,1);
+			lcd.print("note value?");		
+			break;
+		case 2:
+			lcd.print("Change scan_time");		
+			lcd.setCursor(0,1);
+			lcd.print("?");		
+			break;
+		case 3:
+			lcd.print("Change dead_time");		
+			lcd.setCursor(0,1);
+			lcd.print("?");		
+			break;
+		case 4:
+			lcd.print("Change threshold");		
+			lcd.setCursor(0,1);
+			lcd.print("?");		
+			break;
+		case 5:
+			lcd.print("Change max");		
+			lcd.setCursor(0,1);
+			lcd.print("value?");		
+			break;
+		case 6:
+			lcd.print("Change curve?");		
+			break;
+		case 7:
+			lcd.print("Change clear");		
+			lcd.setCursor(0,1);
+			lcd.print("delay?");		
+			break;
+		case 8:
+			lcd.print("Enter test mode");		
+			break;
+	}
+	if(keypad_read()==11){ // OK?
+		lcd.clear();
+		lcd.print("Enter channel?");
+		option_channel=keypad_read();
+		lcd.setCursor(0,1);
+		lcd.print(option);
+		if (keypad_read()==11) { // OK?
+			lcd.clear();
+			switch (option) {
+		case 1:
+			lcd.print("Current: ");		
+			lcd.print(note[option_channel]);
+			lcd.setCursor(0,1);
+			lcd.print("New: ");		
+			option_2=keypad_read();
+			lcd.print(option_2);
+			delay(1000);
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		case 6:
+			break;
+		case 7:
+			break;
+		case 8:
+			break;
+	}						
+
+
+		}
+	}
+
+	}*/
+
 }
 
 void loop()
 {	
-	lcd.setCursor(0,1);
-	lcd.print(keypad_read());
 	
 	/*for(int channel=0;channel<=max_channels;channel++){
 	
