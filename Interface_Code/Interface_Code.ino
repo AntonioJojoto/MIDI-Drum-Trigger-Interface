@@ -38,6 +38,7 @@ void setup()
 {
 	// Setup LCD
 	lcd.begin(16,2);
+	keypad_init();
 	// Initialize MIDI
 	MIDI.begin(MIDI_CHANNEL_OMNI);
 	// Set digital Pins as output
@@ -46,11 +47,16 @@ void setup()
 		state[a]=0;
 		pinMode(circuit[a],OUTPUT);
 	}
+
+	lcd.print("Hola tt");
 }
 
 void loop()
-{
-	for(int channel=0;channel<=max_channels;channel++){
+{	
+	lcd.setCursor(0,1);
+	lcd.print(keypad_read());
+	
+	/*for(int channel=0;channel<=max_channels;channel++){
 	
 	// If not in dead time wait, read the channel 
 	if(state[channel]!=2){
@@ -91,7 +97,7 @@ void loop()
 
 	}
 	}
-}
+}*/
 }
 
 // Periodo para leer los 6 canales son unos 800us

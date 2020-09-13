@@ -1,4 +1,5 @@
 // Define the pins where the buttons will go
+#include <Arduino.h>
 // For now, as prototyping arduino uno
 #define R1 10
 #define R2 9

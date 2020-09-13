@@ -1,6 +1,12 @@
 #include "button.h"
 
-
+#define R1 10
+#define R2 9
+#define R3 8
+#define R4 7
+#define C1 6
+#define C2 1
+#define C3 0
 void keypad_init(void){
 	pinMode(R1,INPUT);
 	pinMode(R2,INPUT);
@@ -13,11 +19,11 @@ void keypad_init(void){
 
 // Too many lines
 int keypad_read(void){
-	do{
 	int a=-1;
+	do{
 	digitalWrite(C1,HIGH);
 	delay(100);
-	if(digitalRead(R1)){ a=1; }
+	if(digitalRead(R1)==1){ a=1; }
 	if(digitalRead(R2)){ a=4; }
 	if(digitalRead(R3)){ a=7; }
 	if(digitalRead(R4)){ a=10; }
@@ -38,6 +44,7 @@ int keypad_read(void){
 	if(digitalRead(R3)){ a=9; }
 	if(digitalRead(R4)){ a=12; }
 	digitalWrite(C3,LOW);
-	}while(a!=-1)
+	}while(a==-1);
 
+	return a;
 }
