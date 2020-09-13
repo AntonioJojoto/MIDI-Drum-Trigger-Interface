@@ -1,50 +1,35 @@
-#include "button.h"
+// If using arduino, dont use 1 and 0 pins for the 
+const byte r[4]={10,9,3,2}; //Rows
+const byte c[3]={6,8,7}; // Colombs
+// Remember matrix[col][row]
+const byte keys[4][3]={{1,2,3},{4,5,6},{7,8,9},{10,0,11}};
 
-#define R1 10
-#define R2 9
-#define R3 8
-#define R4 7
-#define C1 6
-#define C2 1
-#define C3 0
 void keypad_init(void){
-	pinMode(R1,INPUT);
-	pinMode(R2,INPUT);
-	pinMode(R3,INPUT);
-	pinMode(R4,INPUT);
-	pinMode(C1,OUTPUT);
-	pinMode(C2,OUTPUT);
-	pinMode(C3,OUTPUT);
+	// Set only the rows as outputs
+	for(int a=0;a<=2;a++){
+		pinMode(c[a],OUTPUT);
+	}
+	for(int a=0;a<=3;a++){
+		pinMode(r[a],INPUT);
+	}
 }
 
-// Too many lines
 int keypad_read(void){
-	int a=-1;
-	do{
-	digitalWrite(C1,HIGH);
-	delay(100);
-	if(digitalRead(R1)==1){ a=1; }
-	if(digitalRead(R2)){ a=4; }
-	if(digitalRead(R3)){ a=7; }
-	if(digitalRead(R4)){ a=10; }
-	digitalWrite(C1,LOW);
-
-	digitalWrite(C2,HIGH);
-	delay(100);
-	if(digitalRead(R1)){ a=2; }
-	if(digitalRead(R2)){ a=5; }
-	if(digitalRead(R3)){ a=8; }
-	if(digitalRead(R4)){ a=0; }
-	digitalWrite(C2,LOW);
-
-	digitalWrite(C3,HIGH);
-	delay(100);
-	if(digitalRead(R1)){ a=3; }
-	if(digitalRead(R2)){ a=6; }
-	if(digitalRead(R3)){ a=9; }
-	if(digitalRead(R4)){ a=12; }
-	digitalWrite(C3,LOW);
-	}while(a==-1);
-
-	return a;
+	int pressed=-1;
+	while(pressed==-1){
+	for(int col=0;col<=2;col++){
+		digitalWrite(c[col],HIGH);
+		delay(50);
+		for (int row=0;row<=3;row++){
+			if(digitalRead(r[row])==1){
+			pressed=keys[row][col];
+			break;
+			}
+			delay(10);
+		}
+		if(pressed!=-1){break;}
+		digitalWrite(c[col],LOW);
+	}
+	}
+	return pressed;
 }
