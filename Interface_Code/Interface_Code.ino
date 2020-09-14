@@ -1,9 +1,8 @@
 #include <MIDI.h>
-#include <LiquidCrystal.h>
 
 MIDI_CREATE_DEFAULT_INSTANCE();
 
-#define max_channels 6
+#define max_channels 3
 
 // The variables where piezo values will be stored
 int buff;
@@ -16,20 +15,21 @@ int value[max_channels];
 int vel[max_channels];
 unsigned long t[max_channels];
 // Snare, kick, closed hihat
-const byte note[max_channels]={38,36,42,51,53,0};
+const byte note[max_channels]={36,38,1};
 // Pin to clear the peak detector 
-const byte circuit[max_channels]={12,11,10,9,8,7};
+const byte circuit[max_channels]={12,11,10};
 
 // Future releases will have this stored in the EEPROM
 
-int threshold[max_channels]={40,40,40,150,50,40};
-int max_value[max_channels]={600,600,600,700,700,600};
-float scan_time[max_channels]={3,3,3,3,3,3};
-float dead_time[max_channels]={30,30,30,150,150,30};
+// Threshold aumentado
+int threshold[max_channels]={40,40,40};
+int max_value[max_channels]={600,400,600};
+float scan_time[max_channels]={3,3,3};
+float dead_time[max_channels]={30,40,30};
 
 // Time transistor is active
-int clear_delay[max_channels]={1000,1000,1000,1000,1000,1000};
-byte curve[max_channels]={1,1,1,1,1,1};
+int clear_delay[max_channels]={1000,1000,1000};
+byte curve[max_channels]={1,1,1};
 
 
 void setup()
@@ -62,7 +62,7 @@ void loop()
 		if((state[channel]==1)&&((micros()-t[channel])>=(scan_time[channel]*1000))){
 			
 			// The map function should be sustituted with the velovity curve
-			vel[channel]=map(buff,threshold[channel],max_value[channel],1,127);
+			vel[channel]=map(buff,threshold[channel],max_value[channel],2,127);
 			
 			// 7-bit MIDI note, so between 1 and 127
 			if(vel[channel]>127){vel[channel]=127;}
@@ -88,6 +88,8 @@ void loop()
 	}
 	}
 }
+
+
 }
 
 // Periodo para leer los 6 canales son unos 800us
