@@ -15,17 +15,17 @@ int value[max_channels];
 int vel[max_channels];
 unsigned long t[max_channels];
 // Snare, kick, closed hihat
-const byte note[max_channels]={36,38,42};
+const byte note[max_channels]={36,38,1};
 // Pin to clear the peak detector 
 const byte circuit[max_channels]={12,11,10};
 
 // Future releases will have this stored in the EEPROM
 
 // Threshold aumentado
-int threshold[max_channels]={30,30,30};
-int max_value[max_channels]={800,800,900};
-float scan_time[max_channels]={2,2,2};
-float dead_time[max_channels]={30,30,30};
+int threshold[max_channels]={40,40,40};
+int max_value[max_channels]={600,400,600};
+float scan_time[max_channels]={3,3,3};
+float dead_time[max_channels]={30,40,30};
 
 // Time transistor is active
 int clear_delay[max_channels]={1000,1000,1000};
